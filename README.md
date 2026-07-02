@@ -120,7 +120,7 @@ node server.js
 Open:
 
 ```
-http://localhost:8080
+http://localhost:3000
 ```
 
 ---
