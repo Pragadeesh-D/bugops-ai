@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Lemma runtime config — DO NOT rename. Backed by SDK. -->
+  <script data-lemma-runtime-config>window.__LEMMA_CONFIG__={"podId": "019f02e3-dbd5-7551-86ed-6840fe0743d7", "apiUrl": "https://api.lemma.work", "authUrl": "https://lemma.work/auth"};</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>BugOps AI · AI Engineering Operations Platform</title>
+  <meta name="description" content="AI-native bug triage, regression scoring and release readiness for engineering teams." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
+  <link rel="stylesheet" href="./css.v2.css" />
+</head>
+<body>
+  <div id="app" hidden>
+    <a class="skip-link" href="#routes">Skip to main content</a>
+
+    <aside id="sidebar" class="sidebar" aria-label="Primary">
+      <div class="sb-brand">
+        <div class="sb-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="1" y="1" width="20" height="20" rx="6" fill="url(#bm)"></rect>
+            <circle cx="8.5" cy="9" r="1.7" fill="#fff" opacity=".92"></circle>
+            <path d="M7 14 q1.5 -2.5 4 0" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".92"></path>
+            <defs>
+              <linearGradient id="bm" x1="0" y1="0" x2="22" y2="22">
+                <stop offset="0" stop-color="#A78BFA"></stop>
+                <stop offset="1" stop-color="#7C3AED"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="sb-brand-text">
+          <div class="sb-name">BugOps AI</div>
+          <div class="sb-tag">AI Engineering Operations Platform</div>
+        </div>
+        <button class="sb-collapse" id="sb-collapse" aria-label="Collapse sidebar" title="Collapse sidebar">
+          <i data-lucide="panel-left-close"></i>
+        </button>
+      </div>
+
+      <nav class="sb-nav" id="sb-nav"></nav>
+
+      <div class="sb-foot">
+        <div class="sb-pod-card">
+          <div class="sb-pod-status">
+            <span class="pod-indicator" aria-hidden="true"></span>
+            <span class="pod-status-label">Connected</span>
+          </div>
+          <div class="sb-pod-name">BugOps AI Pod</div>
+          <div class="sb-pod-meta">
+            <span class="sb-pod-env">Production</span>
+            <span class="sb-pod-divider">·</span>
+            <span id="sidebar-bugs" class="sb-pod-bugs">—</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar" id="topbar">
+        <div class="topbar-left">
+          <button class="iconbtn mobile-only" id="sb-open" aria-label="Open sidebar"><i data-lucide="menu"></i></button>
+          <div class="cmdbar">
+            <i data-lucide="search" class="cmdbar-i"></i>
+            <input type="text" id="op-search" placeholder="Search by title, component, ID…" aria-label="Search bugs" />
+            <span class="kbd">⌘K</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="theme-pill" id="theme-toggle" aria-label="Toggle theme"><i data-lucide="moon"></i><span>Dark</span></button>
+          <button class="btn-primary" id="new-bug"><i data-lucide="plus"></i><span>New Bug</span></button>
+          <div class="avatar-wrap">
+            <div class="avatar" id="me-avatar" aria-label="Account" title="Engineering Manager" style="font-size:12px;font-weight:700">EM</div>
+            <span class="avatar-label">Engineering Manager</span>
+          </div>
+        </div>
+      </header>
+
+      <section id="routes" class="routes" tabindex="-1" aria-live="polite"></section>
+      <footer class="appfoot">
+        <span>BugOps AI</span><span class="dotsep">·</span><span id="appfoot-route">—</span><span class="dotsep">·</span><span id="appfoot-time">—</span>
+      </footer>
+    </main>
+
+    <div class="sidebar-scrim" id="sb-scrim" aria-hidden="true"></div>
+
+    <div id="modal-mount" aria-live="polite"></div>
+    <div id="toast-stack" class="toast-stack" aria-live="polite" aria-atomic="false"></div>
+    <div id="palette-mount" aria-hidden="true"></div>
+  </div>
+
+  <noscript>BugOps AI requires JavaScript. Please enable it to continue.</noscript>
+
+  <script>
+    // First-paint reveal before app.js even runs the boot path. Avoids the
+    // brief flash that comes from rendering a hidden shell + then Ctx.loading=false.
+    document.getElementById('app').hidden = false;
+  </script>
+  <script src="./app.v2.js" type="module" defer></script>
+</body>
+</html>
